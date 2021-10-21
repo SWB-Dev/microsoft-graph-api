@@ -2,5 +2,6 @@ from graph.abstractions.IGraphAction import IGraphAction, IGraphDeleteAction, IG
 from graph.abstractions.IGraphFilter import IGraphFilter
 
 from sharepoint.abstractions.ISharepointListItem import ISharepointListItem
+from sharepoint.abstractions.ISharepointDocumentFolder import ISharepointDocumentFolder
 from sharepoint.abstractions.ISharepointList import ISharepointList
 from sharepoint.abstractions.ISharepointGraphRequest import ISharepointGraphRequest
