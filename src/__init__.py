@@ -7,3 +7,4 @@ from sharepoint.abstractions.ISharepointListItem import ISharepointListItem
 from sharepoint.abstractions.ISharepointList import ISharepointList
 from sharepoint.abstractions.ISharepointSite import ISharepointSite
 from sharepoint.abstractions.ISharepointGraphRequest import ISharepointGraphRequest
+from sharepoint.abstractions.ISharepointGraphClient import ISharepointGraphClient
