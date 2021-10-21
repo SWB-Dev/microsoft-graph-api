@@ -11,3 +11,6 @@ from sharepoint.abstractions.ISharepointGraphClient import ISharepointGraphClien
 
 from sharepoint.utilities.sharepoint_connection import SharepointConnection
 from sharepoint.utilities.sharepoint_graph_client_base import SharepointGraphClientBase
+
+from sharepoint.implementations.listitem.sharepoint_listitem_request import SharepointListItemRequest
+from sharepoint.implementations.listitem.sharepoint_listitem import SharepointListItem
