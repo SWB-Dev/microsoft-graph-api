@@ -10,3 +10,4 @@ from sharepoint.abstractions.ISharepointGraphRequest import ISharepointGraphRequ
 from sharepoint.abstractions.ISharepointGraphClient import ISharepointGraphClient
 
 from sharepoint.utilities.sharepoint_connection import SharepointConnection
+from sharepoint.utilities.sharepoint_graph_client_base import SharepointGraphClientBase
