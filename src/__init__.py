@@ -8,3 +8,5 @@ from sharepoint.abstractions.ISharepointList import ISharepointList
 from sharepoint.abstractions.ISharepointSite import ISharepointSite
 from sharepoint.abstractions.ISharepointGraphRequest import ISharepointGraphRequest
 from sharepoint.abstractions.ISharepointGraphClient import ISharepointGraphClient
+
+from sharepoint.utilities.sharepoint_connection import SharepointConnection
