@@ -5,4 +5,5 @@ from sharepoint.abstractions.ISharepointDocumentFolder import ISharepointDocumen
 from sharepoint.abstractions.ISharepointDocumentLibrary import ISharepointDocumentLibrary
 from sharepoint.abstractions.ISharepointListItem import ISharepointListItem
 from sharepoint.abstractions.ISharepointList import ISharepointList
+from sharepoint.abstractions.ISharepointSite import ISharepointSite
 from sharepoint.abstractions.ISharepointGraphRequest import ISharepointGraphRequest
