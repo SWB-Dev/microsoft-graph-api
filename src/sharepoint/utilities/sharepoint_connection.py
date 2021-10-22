@@ -12,7 +12,7 @@ class SharepointConnection():
     refresh_token:str
     scope:str
     expires:int = int(time.time()) - 1
-    headers:dict = None
+    _headers:dict = None
     auth_resp:dict = None
 
     @property
@@ -22,6 +22,11 @@ class SharepointConnection():
             self.headers = None
             return True
         return False
+
+    @property
+    def headers(self):
+        self.establish_connection()
+        return self._headers
 
     def establish_connection(self):
         if self.is_expired:
@@ -51,7 +56,7 @@ class SharepointConnection():
             headers['Content-Type'] = 'application/json'
             headers['Accept'] = 'application/json'
             headers['Authorization'] = f"{self.auth_resp['token_type']} {self.auth_resp['access_token']}"
-            self.headers = headers
+            self._headers = headers
     
     def _handle_auth_response(self):
         self.expires = int(time.time()) + (self.auth_resp['expires_in'] - 1)
