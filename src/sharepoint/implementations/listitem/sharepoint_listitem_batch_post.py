@@ -2,7 +2,7 @@ import requests
 import json
 import time
 
-from .... import SharepointGraphClientBase, SharepointListItemRequest, SharepointListItemBatchResponse
+from .... import SharepointGraphClientBase, GraphResponseBase, SharepointListItemBatchResponse
 
 class SharepointListItemBatchPost:
     """Implements the IGraphPostAction protocol."""
@@ -21,7 +21,7 @@ class SharepointListItemBatchPost:
         self.base_uri = base_uri
         self.client = client
         self.throttled_requests = []
-        self.graph_request = SharepointListItemRequest()
+        self.graph_request = GraphResponseBase()
         self.client.add_request(self.graph_request)
         self.batch_url = self.client.GRAPH_BASE_URI + "$batch"
     

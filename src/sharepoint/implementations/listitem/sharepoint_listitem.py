@@ -1,7 +1,7 @@
 from typing import Callable
 import requests
 
-from .... import ISharepointGraphRequest, IGraphAction, IGraphGetAction, IGraphFilter, ISharepointList, SharepointGraphClientBase, SharepointListItemRequest, SharepointListItemBatchAction
+from .... import IGraphResponse, IGraphAction, IGraphGetAction, IGraphFilter, ISharepointList, SharepointGraphClientBase, GraphResponseBase, SharepointListItemBatchAction
 
 class SharepointListItem():
 
@@ -9,7 +9,7 @@ class SharepointListItem():
         self.id = id
         self.parent = parent
         self.client = client
-        self.graph_request:ISharepointGraphRequest = None
+        self.graph_request:IGraphResponse = None
         self.graph_filters:list[IGraphFilter] = []
 
     def filters(self, filter_func:Callable[...,list[IGraphFilter]]) -> IGraphGetAction:
@@ -29,7 +29,7 @@ class SharepointListItem():
             filter_query = self.build_filter_query()
             request_url += filter_query
         self.client.conn.establish_connection()
-        self.graph_request = SharepointListItemRequest()
+        self.graph_request = GraphResponseBase()
         self.client.add_request(self.graph_request)
         self.graph_request.add_responses(self._get_all(request_url))
     
