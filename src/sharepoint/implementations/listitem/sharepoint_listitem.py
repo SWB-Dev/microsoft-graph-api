@@ -1,7 +1,7 @@
 from typing import Callable
 import requests
 
-from .... import ISharepointGraphRequest, IGraphAction, IGraphGetAction, IGraphFilter, ISharepointList, SharepointGraphClientBase, SharepointListItemRequest
+from .... import ISharepointGraphRequest, IGraphAction, IGraphGetAction, IGraphFilter, ISharepointList, SharepointGraphClientBase, SharepointListItemRequest, SharepointListItemBatchAction
 
 class SharepointListItem():
 
@@ -21,6 +21,7 @@ class SharepointListItem():
     
     def batch(self, data:list[dict]) -> IGraphAction:
         request_url = self.build_url()
+        return SharepointListItemBatchAction(data, request_url, self.client)
     
     def get(self, url:str = None):        
         request_url = url or f"{self.client.GRAPH_BASE_URI}{self.build_url()}"

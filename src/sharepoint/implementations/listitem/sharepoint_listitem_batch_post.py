@@ -2,8 +2,6 @@ import requests
 import json
 import time
 
-from requests.models import Response
-
 from .... import SharepointGraphClientBase, SharepointListItemRequest, SharepointListItemBatchResponse
 
 class SharepointListItemBatchPost:
