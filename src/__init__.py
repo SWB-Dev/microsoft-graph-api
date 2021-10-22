@@ -1,6 +1,8 @@
 from graph.abstractions.IGraphAction import IGraphAction, IGraphDeleteAction, IGraphGetAction, IGraphPatchAction, IGraphPostAction, IGraphPutAction
 from graph.abstractions.IGraphFilter import IGraphFilter
 
+from graph.implementations.graph_filter import GraphFilter
+
 from sharepoint.abstractions.ISharepointDocumentFolder import ISharepointDocumentFolder
 from sharepoint.abstractions.ISharepointDocumentLibrary import ISharepointDocumentLibrary
 from sharepoint.abstractions.ISharepointListItem import ISharepointListItem
