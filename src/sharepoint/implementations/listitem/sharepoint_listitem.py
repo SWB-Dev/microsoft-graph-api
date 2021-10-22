@@ -1,7 +1,8 @@
 from typing import Callable
 import requests
 
-from .... import IGraphResponse, IGraphAction, IGraphGetAction, IGraphFilter, ISharepointList, SharepointGraphClientBase, GraphResponseBase, SharepointListItemBatchAction
+from .... import IGraphResponse, IGraphAction, IGraphGetAction, IGraphFilter, ISharepointList
+from .... import SharepointGraphClientBase, GraphResponseBase, SharepointListItemBatchAction
 
 class SharepointListItem():
 
@@ -9,7 +10,7 @@ class SharepointListItem():
         self.id = id
         self.parent = parent
         self.client = client
-        self.graph_request:IGraphResponse = None
+        self.graph_request = GraphResponseBase()
         self.graph_filters:list[IGraphFilter] = []
 
     def filters(self, filter_func:Callable[...,list[IGraphFilter]]) -> IGraphGetAction:
@@ -28,10 +29,8 @@ class SharepointListItem():
         if not url:
             filter_query = self.build_filter_query()
             request_url += filter_query
-        self.client.conn.establish_connection()
-        self.graph_request = GraphResponseBase()
         self.client.add_request(self.graph_request)
-        self.graph_request.add_responses(self._get_all(request_url))
+        self._get_all(request_url)
         return self.graph_request
     
     def build_url(self) -> str:
@@ -47,20 +46,15 @@ class SharepointListItem():
         filter_query = "&".join([f.compose() for f in self.graph_filters])
         return f"?{filter_query}"
 
-    def _get_all(self, url:str) -> list[dict]:
+    def _get_all(self, url:str):
         if url is None:
             return
         
         print("GET:",url)
         next_link = '@odata.nextLink'
-        items:list[dict] = []
         r = requests.get(url, headers=self.client.conn.headers)
         self.graph_request.add_response(r)
         resp_json = r.json()
 
-        items.append(resp_json)
-
         if next_link in resp_json.keys():
-            items.extend(self._get_all(resp_json[next_link]))
-        
-        return items
+            self._get_all(resp_json[next_link])
