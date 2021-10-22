@@ -1,6 +1,8 @@
 from typing import Protocol
 
-from ... import IGraphAction, ISharepointListItem
+from src.graph.abstractions.IGraphResponse import IGraphResponse
+
+from ... import IGraphResponse, IGraphAction, ISharepointListItem
 
 class ISharepointList(Protocol):
     def item(self, id:int) -> ISharepointListItem:
@@ -24,7 +26,7 @@ class ISharepointList(Protocol):
     def subscriptions(self) -> IGraphAction:
         """"""
 
-    def get(self, url:str = None):
+    def get(self, url:str = None) -> IGraphResponse:
         """"""
     
     def get_all(self):
