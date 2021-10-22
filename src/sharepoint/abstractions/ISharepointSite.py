@@ -1,6 +1,6 @@
 from typing import Protocol
 
-from ... import ISharepointList, ISharepointDocumentLibrary
+from ... import IGraphResponse, ISharepointList, ISharepointDocumentLibrary
 
 class ISharepointSite(Protocol):
     
@@ -10,7 +10,7 @@ class ISharepointSite(Protocol):
     def documents(self, library_name:str) -> ISharepointDocumentLibrary:
         """"""
 
-    def get(self, url:str = None):
+    def get(self, url:str = None) -> IGraphResponse:
         """"""
     
     def build_url(self) -> str:
