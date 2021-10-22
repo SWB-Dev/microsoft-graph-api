@@ -1,4 +1,4 @@
-from .... import SharepointGraphClientBase, SharepointListItemBatchPost
+from .... import IGraphResponse, SharepointGraphClientBase, SharepointListItemBatchPost
 
 class SharepointListItemBatchAction:
     
@@ -7,7 +7,7 @@ class SharepointListItemBatchAction:
         self.base_uri = base_uri
         self.client = client
     
-    def post(self, url:str = None):
+    def post(self, url:str = None) -> IGraphResponse:
         """"""
         action = SharepointListItemBatchPost(self.data, self.base_uri, self.client)
-        action.post(url)
+        return action.post(url)

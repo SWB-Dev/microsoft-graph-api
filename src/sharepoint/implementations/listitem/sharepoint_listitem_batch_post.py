@@ -2,7 +2,7 @@ import requests
 import json
 import time
 
-from .... import SharepointGraphClientBase, GraphResponseBase, SharepointListItemBatchResponse
+from .... import IGraphResponse, SharepointGraphClientBase, GraphResponseBase, SharepointListItemBatchResponse
 
 class SharepointListItemBatchPost:
     """Implements the IGraphPostAction protocol."""
@@ -25,10 +25,13 @@ class SharepointListItemBatchPost:
         self.client.add_request(self.graph_request)
         self.batch_url = self.client.GRAPH_BASE_URI + "$batch"
     
-    def post(self, url:str = None):
+    def post(self, url:str = None) -> IGraphResponse:
         """"""
+        self.client.conn.establish_connection()
         while payload_data:= self._get_batch_payload():
             self._send_batch(payload_data)
+        
+        return self.graph_request
 
     def _send_batch(self, payload_data:dict[str, list[dict]]):
         """"""

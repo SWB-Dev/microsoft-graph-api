@@ -23,7 +23,7 @@ class SharepointListItem():
         request_url = self.build_url()
         return SharepointListItemBatchAction(data, request_url, self.client)
     
-    def get(self, url:str = None):        
+    def get(self, url:str = None) -> IGraphResponse:        
         request_url = url or f"{self.client.GRAPH_BASE_URI}{self.build_url()}"
         if not url:
             filter_query = self.build_filter_query()
@@ -32,6 +32,7 @@ class SharepointListItem():
         self.graph_request = GraphResponseBase()
         self.client.add_request(self.graph_request)
         self.graph_request.add_responses(self._get_all(request_url))
+        return self.graph_request
     
     def build_url(self) -> str:
         request_url = ''
