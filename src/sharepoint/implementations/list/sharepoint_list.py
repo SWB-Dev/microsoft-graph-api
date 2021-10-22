@@ -36,7 +36,7 @@ class SharepointList():
         """TODO: NEEDS IMPLEMENTED"""
 
     def get(self, url:str = None) -> IGraphResponse:
-        request_url = url or self.build_url()
+        request_url = url or f"{self.client.GRAPH_BASE_URI}{self.build_url()}"
         r = requests.get(request_url, headers=self.client.conn.headers)
         self.graph_request.add_response(r)
         return self.graph_request
