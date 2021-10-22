@@ -6,6 +6,9 @@ class SharepointGraphClientBase(ABC):
     requests:list[IGraphResponse] = []
     GRAPH_BASE_URI:str = "https://graph.microsoft.com/v1.0/"
 
+    def __init__(self, conn:SharepointConnection):
+        self.conn = conn
+
     @abstractmethod
     def add_request(self, request:IGraphResponse):
         """"""
