@@ -28,3 +28,5 @@ from sharepoint.implementations.documentlibrary.actions.sharepoint_document_libr
 from sharepoint.implementations.documentlibrary.sharepoint_document_library import SharepointDocumentLibrary
 
 from sharepoint.implementations.site.sharepoint_site import SharepointSite
+
+from sharepoint.utilities.sharepoint_graph_client import SharepointGraphClient
