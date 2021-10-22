@@ -19,7 +19,7 @@ class SharepointConnection():
     def is_expired(self) -> bool:
         if self.expires < time.time():
             self.auth_resp = None
-            self.headers = None
+            self._headers = None
             return True
         return False
 
