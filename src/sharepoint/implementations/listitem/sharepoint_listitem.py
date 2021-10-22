@@ -12,6 +12,7 @@ class SharepointListItem():
         self.client = client
         self.graph_request = GraphResponseBase()
         self.graph_filters:list[IGraphFilter] = []
+        self.client.add_request(self.graph_request)
 
     def filters(self, filter_func:Callable[...,list[IGraphFilter]]) -> IGraphGetAction:
         self.graph_filters = filter_func()
@@ -22,6 +23,7 @@ class SharepointListItem():
     
     def batch(self, data:list[dict]) -> IGraphAction:
         request_url = self.build_url()
+        self.client.requests.remove(self.graph_request)
         return SharepointListItemBatchAction(data, request_url, self.client)
     
     def get(self, url:str = None) -> IGraphResponse:        
@@ -29,7 +31,6 @@ class SharepointListItem():
         if not url:
             filter_query = self.build_filter_query()
             request_url += filter_query
-        self.client.add_request(self.graph_request)
         self._get_all(request_url)
         return self.graph_request
     
