@@ -8,5 +8,5 @@ setup(
     author="Steven Barnes",
     author_email="steven.barnes@swbdevelopment.com",
     license="MIT",
-    packages=["src"],
-    install_requires=["requests","json","dataclasses","abc"])
+    packages=["msgraph"],
+    install_requires=["requests"])
