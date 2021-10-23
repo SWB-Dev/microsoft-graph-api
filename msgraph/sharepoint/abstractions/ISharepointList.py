@@ -1,7 +1,5 @@
 from typing import Protocol
 
-from src.graph.abstractions.IGraphResponse import IGraphResponse
-
 from ... import IGraphResponse, IGraphAction, ISharepointListItem
 
 class ISharepointList(Protocol):
