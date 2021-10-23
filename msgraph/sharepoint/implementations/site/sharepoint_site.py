@@ -13,8 +13,8 @@ class SharepointSite:
         self.graph_request = GraphResponseBase()
         self.client.add_request(self.graph_request)
 
-    def lists(self, list:str) -> ISharepointList:
-        self.list = SharepointList(list, self, self.client)
+    def lists(self, list_name:str = None) -> ISharepointList:
+        self.list = SharepointList(self, self.client, list_name)
         self.client.requests.remove(self.graph_request)
         return self.list
 

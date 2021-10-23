@@ -5,8 +5,8 @@ from .... import GraphResponseBase, SharepointListItem, SharepointGraphClientBas
 
 class SharepointList():
 
-    def __init__(self, list:str, parent:ISharepointSite, client:SharepointGraphClientBase):
-        self.list = list
+    def __init__(self, parent:ISharepointSite, client:SharepointGraphClientBase, list_name:str = None):
+        self.list_name = list_name
         self.parent = parent
         self.client = client
         self.graph_request = GraphResponseBase()
@@ -48,5 +48,7 @@ class SharepointList():
         request_url = ''
         if self.parent:
             request_url = self.parent.build_url()
-        request_url += f"lists/{self.list}/"
+        request_url += f"lists/"
+        if self.list_name:
+            request_url += f"{self.list_name}/"
         return request_url

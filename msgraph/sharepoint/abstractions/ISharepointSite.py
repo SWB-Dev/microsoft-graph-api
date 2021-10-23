@@ -4,7 +4,7 @@ from ... import IGraphResponse, ISharepointList, ISharepointDocumentLibrary
 
 class ISharepointSite(Protocol):
     
-    def lists(self, list:str) -> ISharepointList:
+    def lists(self, list_name:str = None) -> ISharepointList:
         """"""
 
     def documents(self, library_name:str) -> ISharepointDocumentLibrary:
