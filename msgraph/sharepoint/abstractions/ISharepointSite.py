@@ -1,10 +1,13 @@
-from typing import Protocol
+from typing import Protocol, Callable
 
-from ... import IGraphResponse, ISharepointList, ISharepointDocumentLibrary
+from ... import IGraphResponse, IGraphFilter, IGraphAction, ISharepointList, ISharepointDocumentLibrary
 
 class ISharepointSite(Protocol):
     
     def lists(self, list_name:str = None) -> ISharepointList:
+        """"""
+
+    def filters(self, filter_func:Callable[...,list[IGraphFilter]]) -> IGraphAction:
         """"""
 
     def documents(self, library_name:str) -> ISharepointDocumentLibrary:

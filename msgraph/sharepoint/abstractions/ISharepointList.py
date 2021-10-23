@@ -1,12 +1,15 @@
-from typing import Protocol
+from typing import Protocol, Callable
 
-from ... import IGraphResponse, IGraphAction, ISharepointListItem
+from ... import IGraphResponse, IGraphFilter, IGraphAction, ISharepointListItem
 
 class ISharepointList(Protocol):
     def item(self, id:int) -> ISharepointListItem:
         """"""
     
     def items(self) -> ISharepointListItem:
+        """"""
+
+    def filters(self, filter_func:Callable[...,list[IGraphFilter]]) -> IGraphAction:
         """"""
 
     def columns(self) -> IGraphAction:
