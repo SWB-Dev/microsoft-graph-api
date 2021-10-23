@@ -128,3 +128,4 @@ dmypy.json
 # Pyre type checker
 .pyre/
 tests/steven_test.py
+msgraph/tests/steven_test.py
