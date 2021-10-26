@@ -26,18 +26,23 @@ class SharepointList():
 
     def columns(self) -> IGraphAction:
         """TODO: NEEDS IMPLEMENTED"""
+        raise NotImplementedError()
     
     def content_types(self) -> IGraphAction:
         """TODO: NEEDS IMPLEMENTED"""
+        raise NotImplementedError()
 
     def created_by_user(self) -> IGraphAction:
         """TODO: NEEDS IMPLEMENTED"""
+        raise NotImplementedError()
 
     def last_modified_user(self) -> IGraphAction:
         """TODO: NEEDS IMPLEMENTED"""
+        raise NotImplementedError()
 
     def subscriptions(self) -> IGraphAction:
         """TODO: NEEDS IMPLEMENTED"""
+        raise NotImplementedError()
 
     def get(self, url:str = None) -> IGraphResponse:
         request_url = url or f"{self.client.GRAPH_BASE_URI}{self.build_url()}"
@@ -51,6 +56,7 @@ class SharepointList():
 
     def get_all(self):
         """TODO: NEEDS IMPLEMENTED"""
+        raise NotImplementedError()
     
     def build_url(self) -> str:
         request_url = ''

@@ -18,12 +18,15 @@ class SharepointDocumentLibrary:
 
     def folder(self, folder_name:str) -> ISharepointDocumentFolder:
         """TODO: NEEDS IMPLEMENTED"""
+        raise NotImplementedError()
     
     def file(self, relative_file_path:str):
         """TODO: NEEDS IMPLEMENTED"""
+        raise NotImplementedError()
     
     def create_folder(self, relative_folder_path:str) -> IGraphPostAction:
         """TODO: NEEDS IMPLEMENTED"""
+        raise NotImplementedError()
 
     
     def create_file(self, relative_file_path:str, stream:io.BufferedIOBase) -> IGraphPutAction:

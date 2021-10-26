@@ -19,6 +19,7 @@ class SharepointListItem():
 
     def count(self) -> IGraphGetAction:
         """"""
+        raise NotImplementedError()
     
     def batch(self, data:list[dict]) -> IGraphAction:
         request_url = self.build_url()
