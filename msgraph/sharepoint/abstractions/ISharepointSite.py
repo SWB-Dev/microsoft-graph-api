@@ -1,6 +1,9 @@
 from typing import Protocol, Callable
 
-from ... import IGraphResponse, IGraphFilter, IGraphAction, ISharepointList, ISharepointDocumentLibrary
+from ... import IGraphResponse, IGraphFilter, IGraphAction
+
+from .ISharepointDocumentLibrary import ISharepointDocumentLibrary
+from .ISharepointList import ISharepointList
 
 class ISharepointSite(Protocol):
     

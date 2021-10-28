@@ -1,6 +1,7 @@
 from typing import Protocol, Callable
 
-from ... import IGraphResponse, IGraphFilter, IGraphAction, ISharepointListItem
+from ... import IGraphResponse, IGraphFilter, IGraphAction
+from .ISharepointListItem import ISharepointListItem
 
 class ISharepointList(Protocol):
     def item(self, id:int) -> ISharepointListItem:

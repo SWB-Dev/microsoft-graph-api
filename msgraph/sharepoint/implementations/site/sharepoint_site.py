@@ -1,8 +1,13 @@
 from typing import Callable
 import requests
 
-from .... import IGraphResponse, IGraphFilter, IGraphAction, ISharepointList, ISharepointDocumentLibrary
-from .... import GraphResponseBase, SharepointGraphClientBase, SharepointList, SharepointDocumentLibrary
+from .... import IGraphResponse, IGraphFilter, IGraphAction
+from ...abstractions.ISharepointDocumentLibrary import ISharepointDocumentLibrary
+from ...abstractions.ISharepointList import ISharepointList
+from ...utilities.sharepoint_graph_client_base import SharepointGraphClientBase
+from ..list.sharepoint_list import SharepointList
+from ..documentlibrary.sharepoint_document_library import SharepointDocumentLibrary
+from .... import GraphResponseBase
 
 class SharepointSite:
 

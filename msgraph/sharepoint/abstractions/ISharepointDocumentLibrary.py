@@ -1,7 +1,8 @@
 import io
 from typing import Protocol
 
-from ... import IGraphAction, ISharepointDocumentFolder
+from ... import IGraphAction
+from .ISharepointDocumentFolder import ISharepointDocumentFolder
 
 class ISharepointDocumentLibrary(Protocol):
     def folder(self, folder_name:str) -> ISharepointDocumentFolder:

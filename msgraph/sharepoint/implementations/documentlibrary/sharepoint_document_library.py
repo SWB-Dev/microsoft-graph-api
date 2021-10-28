@@ -3,8 +3,12 @@ from __future__ import annotations
 import io
 import requests
 
-from .... import IGraphPutAction, IGraphPostAction, ISharepointSite, ISharepointDocumentFolder
-from .... import GraphResponseBase, SharepointGraphClientBase, SharepointDocumentLibraryFilePUT
+from .... import IGraphPutAction, IGraphPostAction
+from ...abstractions.ISharepointDocumentFolder import ISharepointDocumentFolder
+from ...abstractions.ISharepointSite import ISharepointSite
+from .... import GraphResponseBase
+from ...utilities.sharepoint_graph_client_base import SharepointGraphClientBase
+from .actions.sharepoint_document_library_file_put import SharepointDocumentLibraryFilePUT
 
 class SharepointDocumentLibrary:
     

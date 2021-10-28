@@ -1,5 +1,7 @@
-from ... import IGraphResponse, ISharepointSite
-from ... import SharepointGraphClientBase, SharepointSite
+from ... import IGraphResponse
+from ..abstractions.ISharepointSite import ISharepointSite
+from .sharepoint_graph_client_base import SharepointGraphClientBase
+from ..implementations.site.sharepoint_site import SharepointSite
 
 class SharepointGraphClient(SharepointGraphClientBase):
 

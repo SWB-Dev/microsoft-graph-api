@@ -1,7 +1,8 @@
 import io
 import requests
 
-from ..... import IGraphResponse, SharepointGraphClientBase, GraphResponseBase
+from ..... import IGraphResponse, GraphResponseBase
+from ....utilities.sharepoint_graph_client_base import SharepointGraphClientBase
 
 class SharepointDocumentLibraryFilePUT:
 

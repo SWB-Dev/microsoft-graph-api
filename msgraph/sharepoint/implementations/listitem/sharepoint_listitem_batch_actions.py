@@ -3,7 +3,9 @@ import requests
 import time
 from typing import Optional
 
-from .... import IGraphResponse, GraphResponseBase, SharepointGraphClientBase, SharepointListItemBatchResponse
+from .... import IGraphResponse, GraphResponseBase
+from .sharepoint_listitem_batch_response import SharepointListItemBatchResponse
+from ...utilities.sharepoint_graph_client_base import SharepointGraphClientBase
 
 class SharepointListItemBatchAction:
 

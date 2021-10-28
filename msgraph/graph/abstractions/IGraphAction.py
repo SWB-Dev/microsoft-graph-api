@@ -1,6 +1,6 @@
 from typing import Protocol, Optional
 
-from ... import IGraphResponse
+from .IGraphResponse import IGraphResponse
 
 class IGraphAction(Protocol):
     def get(self, url:str = None) -> IGraphResponse:

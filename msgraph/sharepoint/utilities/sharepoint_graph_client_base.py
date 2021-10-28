@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
-from ... import IGraphResponse, SharepointConnection
+from ... import IGraphResponse
+from .sharepoint_connection import SharepointConnection
 
 class SharepointGraphClientBase(ABC):
     conn:SharepointConnection
