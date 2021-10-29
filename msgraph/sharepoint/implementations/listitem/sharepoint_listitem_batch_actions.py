@@ -14,7 +14,7 @@ class SharepointListItemBatchAction:
     PAYLOAD_SCHEMA:list[tuple[str,type,str]] = [
         ("id",str,"Batch payload data should include an 'id' key."),
         ("method",str, "Batch payload data should include the 'method' with the HTTP method ('POST')."),
-        ("url",str), "Batch payload data should include the 'url' key with the relative URL.  ex: /sites/<site-id>/lists/<list-id>/items",
+        ("url",str, "Batch payload data should include the 'url' key with the relative URL.  ex: /sites/<site-id>/lists/<list-id>/items"),
         ("body",dict, "Batch payload data should include 'body' key which is a dictionary and key:value pairs for the record data being posted."),
         ("headers",dict, "Batch payload data should include the 'headers' key: {'headers':'application/json'}.  This is different from the header sent for the POST action.")]
 
@@ -82,7 +82,7 @@ class SharepointListItemBatchAction:
         for schema in self.PAYLOAD_SCHEMA:
             key = schema[0]
             if key not in data_keys:
-                raise KeyError(schema[2])
+                raise KeyError(schema[3])
             if key == "body" and "id" in data[key].keys():
                 raise KeyError("Batch 'body' should not include an 'id' key.")
         return frontloaded
