@@ -10,7 +10,7 @@ class SharepointListItemBatchResponse():
 
     @property
     def had_response(self):
-        return self.__RESPONSES_KEY not in self.response.keys()
+        return self.__RESPONSES_KEY in self.response.keys()
     
     @property
     def was_error(self):
@@ -23,7 +23,7 @@ class SharepointListItemBatchResponse():
     @property
     def was_throttled(self) -> bool:
         if not self.had_response:
-            return None
+            return False
         
         responses = self.response[self.__RESPONSES_KEY]
 

@@ -50,7 +50,7 @@ class SharepointListItemBatchAction:
         r = requests.post(self.batch_url, data=payload, headers=self.client.conn.headers)
         self.graph_request.add_response(r)
         batch_resp = SharepointListItemBatchResponse(r.json())
-        if batch_resp.was_throttled():
+        if batch_resp.was_throttled:
             retry_seconds = batch_resp.get_throttled_retry_seconds()
             print(f"Batches are being throttled.  Paused for {retry_seconds} seconds.")
             time.sleep(retry_seconds)
