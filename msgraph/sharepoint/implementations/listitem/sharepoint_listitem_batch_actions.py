@@ -55,7 +55,7 @@ class SharepointListItemBatchAction:
             print(f"Batches are being throttled.  Paused for {retry_seconds} seconds.")
             time.sleep(retry_seconds)
             throttled = batch_resp.get_throttled()
-            throttled_payload = self._get_throttled_payload(payload_data, throttled)
+            throttled_payload = self._get_throttled_payload(payload_data['requests'], throttled)
             self._send_batch(throttled_payload)
 
     def _get_throttled_payload(self, orig_payload:list[dict], throttled_responses:list[dict]) -> dict[str, list[dict]]:
