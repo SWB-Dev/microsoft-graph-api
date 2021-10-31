@@ -29,7 +29,6 @@ class SharepointSite:
 
     def documents(self, library_name:str) -> ISharepointDocumentLibrary:
         self.library = SharepointDocumentLibrary(library_name, self, self.client)
-        self.client.requests.remove(self.graph_request)
         return self.library
 
     def get(self, url:str = None) -> IGraphResponse:

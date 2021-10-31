@@ -34,10 +34,10 @@ class SharepointDocumentLibrary:
 
     
     def create_file(self, relative_file_path:str, stream:io.BufferedIOBase) -> IGraphPutAction:
-        #Credit Hold/10192021.zip
+        """"""
         drive_uri = self.build_url()
-        file_uri = f"{drive_uri}root:/{relative_file_path}:/content"
-        return SharepointDocumentLibraryFilePUT(file_uri, self, stream, self.client)
+        file_uri = f"{drive_uri}root:/{relative_file_path}"
+        return SharepointDocumentLibraryFilePUT(file_uri, stream, self.client)
     
     def build_url(self) -> str:
         library_id = self._get_library_id()
@@ -55,6 +55,7 @@ class SharepointDocumentLibrary:
             for lib in library_json['value']:
                 if lib['name'] == self.library_name:
                     return lib['id']
+            raise Exception(f"{self.library_name} not found on site.")
         
         if "error" in library_json.keys():
             print("Error in retreiving Document Library id.")
