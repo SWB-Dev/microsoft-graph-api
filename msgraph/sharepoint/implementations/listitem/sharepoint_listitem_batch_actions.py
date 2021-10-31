@@ -83,8 +83,11 @@ class SharepointListItemBatchAction:
             key = schema[0]
             if key not in data_keys:
                 raise KeyError(schema[3])
-            if key == "body" and "id" in data[key].keys():
-                raise KeyError("Batch 'body' should not include an 'id' key.")
+            if key == "body":
+                if "id" in data[key].keys():
+                    raise KeyError("Batch 'body' should not include an 'id' key.")
+                if "fields" not in data[key].keys():
+                    raise KeyError("Batch 'body' should include the 'fields' key for POST.")
         return frontloaded
     
     def _frontload_payload(self, data:dict) -> dict:

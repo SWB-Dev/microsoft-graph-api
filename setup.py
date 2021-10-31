@@ -25,7 +25,7 @@ from setuptools import setup
 
 setup(
     name="microsoft-graph-api",
-    version="1.0.8",
+    version="1.0.9",
     description="API for Microsoft Graph using refresh tokens.",
     url="https://github.com/SWB-Dev/microsoft-graph-api",
     author="Steven Barnes",
