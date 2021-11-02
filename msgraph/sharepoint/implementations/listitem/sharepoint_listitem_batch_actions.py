@@ -43,7 +43,6 @@ class SharepointListItemBatchAction:
         while payload_data:= self._get_batch_payload():
             self._send_batch(payload_data)
 
-
     def _send_batch(self, payload_data:dict[str, list[dict]]):
         """Send the Batch to Graph and handle the response if throttled."""
         payload = json.dumps(payload_data)
@@ -84,12 +83,50 @@ class SharepointListItemBatchAction:
             if key not in data_keys:
                 raise KeyError(schema[3])
             if key == "body":
-                if "id" in data[key].keys():
-                    raise KeyError("Batch 'body' should not include an 'id' key.")
-                if "fields" not in data[key].keys():
-                    raise KeyError("Batch 'body' should include the 'fields' key for POST.")
+                self._validate_payload_body(data[key])
+
+        if self.method == "PATCH":
+            frontloaded['url'] = f"{self.base_uri}{frontloaded['id']}/fields"
+            
         return frontloaded
     
+    def _validate_payload_body(self, body:dict):
+        if not isinstance(body, dict):
+            raise TypeError(f"Batch 'body' should be of type: {type(dict).__name__}.")
+
+        body_keys = body.keys()
+
+        if "id" in body_keys:
+            raise KeyError("Batch 'body' should not include an 'id' key.")
+
+        if self.method == "POST":
+            self._validate_post_body(body)
+        
+        if self.method == "PATCH":
+            self._validate_patch_body(body)
+
+    def _validate_post_body(self, body:dict):
+        body_keys = body.keys()
+
+        if not 'fields' in body_keys:
+            raise KeyError("Batch 'body' should include the 'fields' key for POST.")
+        
+        fields = body['fields']
+
+        if not isinstance(fields, dict):
+            raise TypeError(f"Batch 'body' 'fields' should be of type: {type(dict).__name__}.")
+        
+        field_keys = fields.keys()
+
+        if 'id' in field_keys:
+            raise KeyError("Batch 'body' 'fields' should not include the key 'id'.")
+    
+    def _validate_patch_body(self, body:dict):
+        body_keys = body.keys()
+
+        if 'fields' in body_keys:
+            raise KeyError("Batch 'body' should NOT include the 'fields' key for PATCH.")
+        
     def _frontload_payload(self, data:dict) -> dict:
         """Addes or updates required keys for a Graph batch request."""
         data['headers'] = self.BASE_HEADER
