@@ -33,7 +33,7 @@ class SharepointListItemBatchAction:
         self._send_data()
         return self.graph_request
     
-    def patch(self, url:Optional[str]) -> IGraphResponse:
+    def patch(self, url:Optional[str] = None) -> IGraphResponse:
         """Send Batch UPDATES to a SharePoint list."""
         self.method = "PATCH"
         self._send_data()

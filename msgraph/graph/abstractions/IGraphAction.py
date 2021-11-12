@@ -9,16 +9,16 @@ class IGraphAction(Protocol):
     def get_all(self):
         """"""
 
-    def post(self, url:Optional[str]) -> IGraphResponse:
+    def post(self, url:Optional[str] = None) -> IGraphResponse:
         """"""
     
-    def patch(self, url:Optional[str]) -> IGraphResponse:
+    def patch(self, url:Optional[str] = None) -> IGraphResponse:
         """"""
     
     def put(self) -> IGraphResponse:
         """"""
     
-    def delete(self, url:Optional[str]) -> IGraphResponse:
+    def delete(self, url:Optional[str] = None) -> IGraphResponse:
         """"""   
     
     def build_url(self) -> str:
@@ -33,7 +33,7 @@ class IGraphGetAction(Protocol):
         """"""
 
 class IGraphPatchAction(Protocol):
-    def patch(self, url:Optional[str]) -> IGraphResponse:
+    def patch(self, url:Optional[str] = None) -> IGraphResponse:
         """"""
 
 class IGraphPutAction(Protocol):
@@ -41,5 +41,5 @@ class IGraphPutAction(Protocol):
         """"""
 
 class IGraphDeleteAction(Protocol):
-    def delete(self, url:Optional[str]) -> IGraphResponse:
+    def delete(self, url:Optional[str] = None) -> IGraphResponse:
         """"""  
