@@ -32,6 +32,7 @@ class SharepointDocumentLibraryFilePUT:
                 data_len = len(data)
                 headers['Content-Length'] = f"{data_len}"
                 headers['Content-Range'] = f"bytes {start}-{end}/{filesize}"
+                print(headers['Content-Length'], headers['Content-Range'])
                 r = requests.put(upload_url, headers=headers, data=data)
                 if "error" in r.json().keys():
                     error = r.json()['error']
@@ -58,7 +59,7 @@ class SharepointDocumentLibraryFilePUT:
         return size
 
     def _open_upload_session(self, item_path:str) -> str:
-        _, filename = item_path.split("/")
+        filename = item_path.split("/")[-1]
         body_data = {
             "items": {
                 "@odata.type":"microsoft.graph.driveItemUploadedableProperties",
