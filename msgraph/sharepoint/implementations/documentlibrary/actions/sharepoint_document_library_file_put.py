@@ -23,9 +23,9 @@ class SharepointDocumentLibraryFilePUT:
         headers = self.client.conn.headers.copy()
         headers['content-type'] = 'text/plain'
         filesize = self._get_filesize()
-
+        remaining_bytes = filesize
         start = 0
-        end = filesize - 1 if filesize <= self.MAX_BYTE_RANGE - 1 else self.MAX_BYTE_RANGE - 1
+        end = self._calculate_next_end_byte(start, remaining_bytes)
 
         try:
             while data := self.stream.read(self.MAX_BYTE_RANGE):
@@ -37,14 +37,20 @@ class SharepointDocumentLibraryFilePUT:
                     error = r.json()['error']
                     raise Exception(error)
                 self.graph_request.add_response(r)
+                remaining_bytes -= data_len
                 start = end + 1
-                end = start + data_len
+                end = self._calculate_next_end_byte(start, remaining_bytes)
         except Exception as ex:
             print(ex)
             self._cancel_upload_session(upload_url)
+        finally:
+            return self.graph_request
 
-        return self.graph_request
-    
+    def _calculate_next_end_byte(self, start:int, remaining:int) -> int:
+        if remaining < self.MAX_BYTE_RANGE:
+            return start + remaining - 1       
+        return start + self.MAX_BYTE_RANGE - 1
+
     def _get_filesize(self) -> int:
         self.stream.read()
         size = self.stream.tell()
@@ -52,7 +58,7 @@ class SharepointDocumentLibraryFilePUT:
         return size
 
     def _open_upload_session(self, item_path:str) -> str:
-        filename = item_path.split("/")[-1]
+        _, filename = item_path.split("/")
         body_data = {
             "items": {
                 "@odata.type":"microsoft.graph.driveItemUploadedableProperties",
@@ -78,4 +84,5 @@ class SharepointDocumentLibraryFilePUT:
     def _cancel_upload_session(self, upload_url:str):
         print("Cancelling upload session...")
         r = requests.delete(upload_url, headers=self.client.conn.headers)
-        print("Upload session cancelled: {r.status_code}")
+        self.graph_request.add_response(r)
+        print(f"Upload session cancelled: {r.status_code}")
