@@ -86,7 +86,7 @@ class SharepointListItemBatchAction:
                 self._validate_payload_body(data[key])
 
         if self.method == "PATCH":
-            frontloaded['url'] = f"{self.base_uri}{frontloaded['id']}/fields"
+            frontloaded['url'] = f"{self.base_uri}/{frontloaded['id']}/fields"
             
         return frontloaded
     

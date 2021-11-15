@@ -94,7 +94,7 @@ class TestSharepointListItemBatchActionsPatch(unittest.TestCase):
 
     def setUp(self):
         self.client = SharepointGraphClient(None)
-        self.base_uri = self.client.sites("ParentSite/ChildSite").lists("MyList").build_url()
+        self.base_uri = self.client.sites("ParentSite/ChildSite").lists("MyList").items().build_url()
         self.patch_data = {
             "id": 1,
             "body": {
@@ -107,7 +107,7 @@ class TestSharepointListItemBatchActionsPatch(unittest.TestCase):
     def test_patch_uri_includes_id(self):
         data = self.patch_data.copy()
 
-        control_uri = f"{self.base_uri}{data['id']}/fields"
+        control_uri = f"{self.base_uri}/{data['id']}/fields"
 
         payload = self.batch._build_payload(data)
 
