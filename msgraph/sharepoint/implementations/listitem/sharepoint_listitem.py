@@ -54,14 +54,11 @@ class SharepointListItem():
         return f"?{filter_query}"
 
     def _get_all(self, url:str):
-        if url is None:
-            return
-        
-        print("GET:",url)
         next_link = '@odata.nextLink'
-        r = requests.get(url, headers=self.client.conn.headers)
-        self.graph_request.add_response(r)
-        resp_json = r.json()
-
-        if next_link in resp_json.keys():
-            self._get_all(resp_json[next_link])
+        counter = 0
+        while url is not None:
+            print(f"Retreiving data: Page {counter}")
+            r = requests.get(url, headers=self.client.conn.headers)
+            self.graph_request.add_response(r)
+            resp_json:dict = r.json()
+            url = resp_json.get(next_link)
